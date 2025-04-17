@@ -1,4 +1,8 @@
+
+
 import 'package:flutter/material.dart';
+
+// fstful
 
 class Home extends StatefulWidget {
   const Home({ Key? key }) : super(key: key);
@@ -8,13 +12,50 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
+
+
+
+List Colorlist = [ 
+          Colors.green,
+          Colors.blue,
+          Colors.yellow,
+          Colors.pink,
+          Colors.red,
+];
+
+  List ColorsNames = ["Green","Blue", "Yellow","pink","Red"];
+
+int ColorIndex =0;
+
+void ColorNamechange(){
+ setState((){
+
+ColorIndex = ColorIndex + 1 ;
+
+if( ColorIndex == 5){
+  ColorIndex = 0;
+  }
+  
+// if( ColorIndex <= 4){
+//   }else {ColorIndex = 0;
+// }
+
+ });
+
+
+}
+
+
+
+
   @override
   Widget build(BuildContext context) {
     return Scaffold
     (appBar: AppBar  (
-      backgroundColor: const Color.fromARGB(255, 188, 240, 191) , 
+      backgroundColor: Colorlist [ColorIndex], 
       title: Text ( "Sobuj App")
     ),
+    //App Bar
     
 
 
@@ -22,24 +63,27 @@ class _HomeState extends State<Home> {
 
      body: Container(color: const Color.fromARGB(255, 255, 255, 255),
         child: Center(
-           child: Text("This is my first app", style:TextStyle(
-            fontSize: 20,color: const Color.fromARGB(255, 0, 0, 0),
-            fontWeight: FontWeight.w700),
+           child: Text(
+            "Active Color : " + ColorsNames [ColorIndex]+" Index  ${ColorIndex}", 
+              style:TextStyle (fontSize: 20, color: Colorlist [ColorIndex],
+                 fontWeight: FontWeight.w700),
             
             ),
         ),
-     ) ,
+     ) , 
+      //container
       
 
 
+  floatingActionButton: FloatingActionButton(onPressed: (){
 
-
-
-floatingActionButton: FloatingActionButton
-(onPressed:(){
-print ("Button clied");},
-child: Icon (Icons.add)
-),
+    ColorNamechange();
+  },
+    child:Icon(Icons.add),
+  
+  ),
+// Floating Action Bitton
+// child
 
 
 
@@ -51,10 +95,13 @@ bottomNavigationBar: BottomNavigationBar(
         icon: Icon(Icons.home),
          label:'Home',
        ),
+       //Bottom Navigation Bar Item
+      
+
 
           BottomNavigationBarItem(
-        icon: Icon(Icons.business),
-        label:'Business',
+        icon: Icon(Icons.music_note),
+        label:'Music',
       ),
 
        
