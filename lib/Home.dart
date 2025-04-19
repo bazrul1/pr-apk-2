@@ -1,6 +1,9 @@
 
 
 import 'package:flutter/material.dart';
+import 'package:flutter_application_2/HomePage.dart';
+import 'package:flutter_application_2/PhotoPage.dart';
+import 'package:flutter_application_2/SchoolPage.dart';
 
 // fstful
 
@@ -46,6 +49,12 @@ if( ColorIndex == 5){
 }
 
 
+List PageList = [ HomePage(), PhotoPage(),SchoolPage() ];
+
+
+int PageIndex = 0;
+
+
 
 
   @override
@@ -61,25 +70,20 @@ if( ColorIndex == 5){
 
 
 
-     body: Container(color: const Color.fromARGB(255, 255, 255, 255),
-        child: Center(
-           child: Text(
-            "Active Color : " + ColorsNames [ColorIndex]+" Index  ${ColorIndex}", 
-              style:TextStyle (fontSize: 20, color: Colorlist [ColorIndex],
-                 fontWeight: FontWeight.w700),
-            
-            ),
-        ),
-     ) , 
+     body: PageList[PageIndex],
+     
+     
+      
       //container
       
 
 
   floatingActionButton: FloatingActionButton(onPressed: (){
-
-    ColorNamechange();
+     ColorNamechange();
+   
   },
-    child:Icon(Icons.add),
+    child:Icon(Icons.edit,
+    ),
   
   ),
 // Floating Action Bitton
@@ -89,7 +93,20 @@ if( ColorIndex == 5){
 
 
 
-bottomNavigationBar: BottomNavigationBar(
+bottomNavigationBar: BottomNavigationBar(onTap: (index){
+setState(() {
+  PageIndex = index;
+});
+
+
+},
+
+
+backgroundColor: const Color.fromARGB(255, 101, 99, 99),
+selectedItemColor: const Color.fromARGB(255, 3, 238, 85),
+unselectedItemColor: const Color.fromARGB(255, 254, 254, 255),
+currentIndex: PageIndex,
+
   items: const <BottomNavigationBarItem>
      [BottomNavigationBarItem(
         icon: Icon(Icons.home),
@@ -100,8 +117,8 @@ bottomNavigationBar: BottomNavigationBar(
 
 
           BottomNavigationBarItem(
-        icon: Icon(Icons.music_note),
-        label:'Music',
+        icon: Icon(Icons.photo_sharp),
+        label:'Photo',
       ),
 
        
